@@ -22,12 +22,20 @@ from pypro.base.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('', include('pypro.base.urls')),
 ]
 
 if settings.DEBUG:
-    import debug_toolbar
+    import debug_toolbar #é a barra de ferramenta que fica do lado direito da pagina
 
     urlpatterns.append(
     path('__debug__/', include(debug_toolbar.urls))
     )
+
+
+
+
+
+
+
+
