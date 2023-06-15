@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %} <!--parte dos arquivos estaticos e navebar-->
+{% load static %}
+{% block title %}Python Pro - Aperitivos{% endblock title %} <!-- titulo que aparece do lado do favicon -->
+{% block description %}Página com todos vídeos gratuítos{% endblock description %} <!--descrição da pagina , aparece quando vc inspeciona o html da pagina -->
+{% block body %}
+
+<!--esse html ira numerar a quantidade de vídeos que tem dentro de lista-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mt-4 mb-3">Lista de Vídeos Aperitivos</h1>
+            <ol>
+                {% for video in videos %} <!--vai pegar a lista de videos e distrinchar-->
+                <li><a href="{{ video.get_absolute_url }}">{{ video.titulo | default:"Faltando Título" }}</a></li> <!-- esse código "{{ video.get_absolute_url }}" esta transformando os nomes dos videos em link. Esta numerando os videos também "video.titulo". Se o video não tiver nome irá imprimir a msg "Faltando Título"-->
+                {% empty %}
+                <li>Não foi encontrado nenhum video</li> <!--essa msg irá aparecer se não tiver videos dentro de indice-->
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+
+{% endblock body %} <!--"body" é a parte do rodapé da pagina -- >
