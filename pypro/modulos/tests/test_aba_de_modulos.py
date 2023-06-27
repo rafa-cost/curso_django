@@ -21,9 +21,10 @@ def test_titulo_dos_modulos(resp, modulos):
     for modulo in modulos:
         assert_contains(resp, modulo.titulo)
 
+
 def test_link_dos_modulos(resp, modulos):
     for modulo in modulos:
-        assert_contains(resp, modulo.get_asolute_url())
+        assert_contains(resp, modulo.get_absolute_url())
 
 
 
