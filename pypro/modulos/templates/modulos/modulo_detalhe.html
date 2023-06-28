@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %} <!--parte dos arquivos estaticos e navebar-->
+{% load static %}
+{% block title %}{{modulo.titulo}}{% endblock title %} <!--titulo que aparece do lado do favicon-->
+{% block description %}Página com detalhes do módulo {{modulo.titulo}}{% endblock description %} <!--descrição da pagina , aparece quando vc inspeciona o html da pagina-->
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h1 class="mt-4 mb-3">{{ modulo.titulo }}</h1> <!--se por acaso esquecer de colocar o titulo , acima do video, irá aparecer a msg "Faltando Título"-->
+           <dl>
+               <dt>Público</dt>
+               <dd>{{ modulo.publico }}</dd>
+               <dt>Descrição</dt>
+               <dd>{{ modulo.descricao}}</dd>
+           </dl>
+        </div>
+    </div>
+
+</div>
+
+{% endblock body %} <!--o "body" é a parte do rodapé da pagina-->
