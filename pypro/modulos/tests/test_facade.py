@@ -10,4 +10,4 @@ def modulos(db):
     return [mommy.make(Modulo, titulo=s) for s in 'Antes Depois'.split()] # estamos criando 2 modulos com os titulos antes e depois
 
 def test_listar_modulos_ordenados(modulos):
-    assert list(sorted(modulos, key=lambda modulo: modulo.titulo)) == facade.listar_modulos_ordenados()
+    assert list(sorted(modulos, key=lambda modulo: modulo.order)) == facade.listar_modulos_ordenados()
