@@ -3,6 +3,9 @@ from django.shortcuts import render
 from pypro.modulos import facade
 
 
+def indice(request):
+    ctx = {'modulos': facade.listar_modulos_com_aulas()}  #acho que é uma lista de contexto
+    return render(request, 'modulos/indice.html', ctx)   #criamos o endereço do nosso template, e depois passamos para o módulos urls
 # Create your views here.
 def detalhe(request, slug):
     modulo = facade.encontrar_modulo(slug)
