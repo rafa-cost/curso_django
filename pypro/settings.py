@@ -35,6 +35,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 AUTH_USER_MODEL = 'base.User'
 
+LOGIN_URL = '/contas/login/'      #esse código, ele ira pedir a senha assim que um usuario não logado tentar ver algum video, assim que ele clicar no video sera direcionado para o login, e assim que fizer o login ele é direcionado para o video
+LOGIN_REDIRECT_URL = '/modulos/'   #depois que o usuario fizer o login de nome e senha, sera direcionado para o url 'modulos'
+LOGOUT_REDIRECT_URL = '/'      #por conta deste código assim que o usuario, apertar o botão sair, ele sera redirecionado para pagina principal do site '/'
 # Application definition
 
 INSTALLED_APPS = [
