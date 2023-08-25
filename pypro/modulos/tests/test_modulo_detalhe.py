@@ -29,11 +29,11 @@ def test_titulo(resp, modulo: Modulo):
 def test_descricao(resp, modulo: Modulo):
     assert_contains(resp, modulo.descricao)
 
-def test_publico(resp, modulo: Modulo):
+def test_publico(resp, modulo: Modulo):     #descrição do publico
     assert_contains(resp, modulo.publico)
 
 def test_aulas_titulos(resp, aulas):
-    for aula in aulas:                        #esse for é para mostrar todas as aulas
+    for aula in aulas:                        #esse teste é para mostrar todos os titulo de as aulas
         assert_contains(resp, aula.titulo)
 
 def test_aulas_links(resp, aulas):            #esse teste é referente aos links de cada aula, que assim que vc clíca é direcionada para o video

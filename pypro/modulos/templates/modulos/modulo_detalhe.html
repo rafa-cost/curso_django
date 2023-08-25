@@ -3,9 +3,11 @@
 {% block title %}{{modulo.titulo}}{% endblock title %} <!--titulo que aparece do lado do favicon-->
 {% block description %}Página com detalhes do módulo {{modulo.titulo}}{% endblock description %} <!--descrição da pagina , aparece quando vc inspeciona o html da pagina-->
 {% block body %}
+<br>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <!--a diferença desse html para o indice.html é que aqui ele mostra o módulo individualmente, agora o outro mostra todos os módulos juntos-->
 <!--essa pagina é ligada ao modulo test_modulo_detalhe-->
             <h1 class="mt-4 mb-3">{{ modulo.titulo }}</h1>
            <dl>
@@ -22,7 +24,14 @@
             </ol>
         </div>
     </div>
+    </div>
+<br>
+<br>
+<br>
+<br>
 
-</div>
+
+
+
 
 {% endblock body %} <!--o "body" é a parte do rodapé da pagina-->

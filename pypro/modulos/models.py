@@ -15,13 +15,11 @@ class Modulo(OrderedModel): #OrderedModels serve para organizarmos os modulos da
         pass
 
     def __str__(self):
-        return self.titulo
+        return self.titulo  #esse codigo ele imprimi o titulo do video, na parte de cima da tela, assim que adicionamos um novo video, ou quando alteramos algo no video, isso dentro do admin do django
 
     def get_absolute_url(self):
-        return reverse('modulos:detalhe', kwargs={'slug': self.slug})
+        return reverse('modulos:detalhe', kwargs={'slug': self.slug}) # o get_absolute_url ira converter os nomes dos videos em links e vai direcionar para o video selecionado
 
-#criamos essa tabela modulos_aula depois de criarmos a tabela modulos_modulo, ou seja na sequência sem precisar dar
-#o "migrate zero".
 class Aula(OrderedModel):
     titulo = models.CharField(max_length=64)
     slug = models.SlugField(unique=True) #isso é um campo unico
@@ -33,10 +31,12 @@ class Aula(OrderedModel):
         pass
 
     def __str__(self):
-        return self.titulo
+        return self.titulo #esse codigo ele imprimi o titulo do video, na parte de cima da tela, assim que adicionamos um novo video, ou quando alteramos algo no video, isso dentro do admin do django
+
 
     def get_absolute_url(self):
-        return reverse('modulos:aula', kwargs={'slug': self.slug})
+        return reverse('modulos:aula', kwargs={'slug': self.slug}) # o get_absolute_url ira converter os nomes dos videos em links e vai direcionar para o video selecionado
+
 
 
 

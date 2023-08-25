@@ -21,7 +21,7 @@ def resp(client_com_usuario_logado, aula):    # esses 3 testes abaixo para passa
     resp = client_com_usuario_logado.get(reverse('modulos:aula', kwargs={'slug': aula.slug}))
     return resp
 
-def test_titulo(resp, aula: Aula):
+def test_titulo(resp, aula: Aula):        #testando o titulo da aula
     assert_contains(resp, aula.titulo)
 
 def test_vimeo(resp, aula: Aula):

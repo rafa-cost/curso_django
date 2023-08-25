@@ -19,11 +19,11 @@
             <h1 class="mt-4 mb-3">{{ aula.titulo | default:"Faltando Título" }}</h1> <!--se por acaso esquecer de colocar o titulo , acima do aula, irá aparecer a msg "Faltando Título"-->
             <!--com esse código baixo iremos adicionar os videos na página, através do banco de dados-->
             <iframe src="https://player.vimeo.com/video/{{ aula.vimeo_id }}"
-                    width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen title="Aula 01 - MOTIVAÇÃO — Curso de PYTHON GRÁTIS.mp4"></iframe>
+                    width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
         </div>
     </div>
 
 </div>
-
+<br>
+<br>
 {% endblock body %} <!--o "body" é a parte do rodapé da pagina-->
