@@ -16,5 +16,5 @@ class Matricula(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = [['usuario', 'turma']]
-        ordering = ['turma', 'data']
+        unique_together = [['usuario', 'turma']]   #no meu intender esta fazendo a ligação entre turma e usuario
+        ordering = ['turma', 'data'] #ordenar turma por data

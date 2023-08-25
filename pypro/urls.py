@@ -21,10 +21,10 @@ from django.conf import settings
 from pypro.base.views import home
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('contas/', include('django.contrib.auth.urls')),
-    path('', include('pypro.base.urls')),
-    path('aperitivos/', include('pypro.aperitivos.urls')),
+    path('admin/', admin.site.urls),      #endereço do django admin
+    path('contas/', include('django.contrib.auth.urls')),    #contas/login para o usuario se logar no site
+    path('', include('pypro.base.urls')),                    #a pagina home do projeto
+    path('aperitivos/', include('pypro.aperitivos.urls')),   #abaixo seus aplicativos
     path('modulos/', include('pypro.modulos.urls')),
     path('turmas/', include('pypro.turmas.urls')),
 ]

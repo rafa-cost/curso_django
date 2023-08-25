@@ -17,7 +17,7 @@ def modulos(db):
 @pytest.fixture
 def aulas(modulos):
     aulas=[]
-    for modulo in modulos:
+    for modulo in modulos:   # esse código ira mostrar na pagina todos os modulos presentes no banco
         aulas.extend(mommy.make(Aula, 3, modulo=modulo))  #estamos criando aqui 3 aulas para cada modulo
     return aulas
 

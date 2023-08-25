@@ -41,6 +41,10 @@ LOGOUT_REDIRECT_URL = '/'      #por conta deste código assim que o usuario, ape
 # Application definition
 
 INSTALLED_APPS = [
+    'pypro.base',            #colocamos nossos templates acima dos outros itens, para funcionar o template de recuperação de senha, dessa forma é melhor para que ele pegue os templates primeiramente antes das outras aplicações
+    'pypro.aperitivos',
+    'pypro.modulos',
+    'pypro.turmas',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,10 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'collectfast',
     'django.contrib.staticfiles',
-    'pypro.base',
-    'pypro.aperitivos',
-    'pypro.modulos',
-    'pypro.turmas',
     'ordered_model',
     'django_extensions',
 
@@ -88,6 +88,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pypro.wsgi.application'
 
+
+#configurações de envio de email, para usuario redefinir a senha
+
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+
+
+
+#configuração django debug tollbar
+
 INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 
 if DEBUG:
@@ -95,7 +109,7 @@ if DEBUG:
     MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+#configurações banco de dados
 default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 parse_database = partial(dj_database_url.parse, conn_max_age=600)
@@ -124,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
-
+#configuração lingua e fusohorario
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
