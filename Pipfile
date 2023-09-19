@@ -1,29 +1,31 @@
+#quado vc trabalha com pipenv , se vc rodar pipenv install ele vai criar o ambiente virtual e instalar as dependencias para vc.
+#pipenv sync -d, esse comando é quando vc quer instalar as dependencias que ja existe em um arquivo que usa pipenv
 [[source]]
 url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[packages]
+[packages]       #dependencia de produção , são as que meu projeto precisa para rodar
 django = "*"
-gunicorn = "*"
-pytest-django = "*"
-python-decouple = "*"
+gunicorn = "*"               #é um servidor de aplicativo, ira fazer nossa conexão com o heroku
+pytest-django = "*"          #aqui no caso é pra gente fazer os testes das aplicação, para evitar que nosso sistema de alguma falha em produção
+python-decouple = "*"        #aqui utilizamos para configurar o debug no settings, no .env e tb no heroku. O python decouple tem uma ligação com nosso .env
 dj-database-url = "*"
-psycopg2-binary = "*"
+psycopg2-binary = "*"        #isso é referente ao banco de dados, acho que do postgress
 django-s3-folder-storage = "*"
-collectfast = "*"
-django-debug-toolbar = "*"
-sentry-sdk = "*"
+collectfast = "*"               #para subir apenas os arquivos estaticos alterados no sevidor externo(heroku) no deploy agilizando oo deploy
+django-debug-toolbar = "*"      #é a barra de ferramentasvque aparece do lado direito do nosso site no ambiente de desenvolvimento no "local host", essa barra fornece varias informações e configurações, para o debug toobar aparecer e funcionar a variavel debug do settings ou .env tem que ser true
+sentry-sdk = "*"                #serviço de apoio conectado com nossa aplicação, ele também captura erros no código
 requests = "==2.28.2"
 django-ordered-model = "*"
 ipython = "*"
 django-extensions = "*"
 
-[dev-packages]
-flake8 = "*"
-pytest-cov = "*"
-codecov = "*"
-model-mommy = "*"
+[dev-packages]   #dependencias de desenvolvimento, acho que são as dependencias que utilizamos para achar erros nó código, e também são as dependencias que utilizaremos nos testes.
+flake8 = "*"         #para achar erros no código
+pytest-cov = "*"      #pytest cov para medir a cobertura
+codecov = "*"         #para gerar os relatorios de cobertura para os nossos pull requests
+model-mommy = "*"      #ajuda a fazer os testes
 
 [requires]
 python_version = "3.10"

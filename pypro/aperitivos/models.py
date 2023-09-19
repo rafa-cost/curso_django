@@ -9,7 +9,7 @@ class Video(models.Model):
     vimeo_id = models.CharField(max_length=32)
     creation = models.DateTimeField(auto_now_add=True)
 
-    def get_absolute_url(self):  # o get_absolute_url ira no indice.html ira converter os nomes do videos em links
+    def get_absolute_url(self):  # o get_absolute_url no indice.html ira converter os nomes dos videos em links
         return reverse('aperitivos:video', args=(self.slug,))  # vai direcionar para o video selecionado
 
     def __str__(self):

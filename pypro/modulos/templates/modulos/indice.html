@@ -5,7 +5,7 @@
 {% block body %}
 <!--a diferença desse html, para o modulo_detalhe, e que aqui mostramos todos os modulos, e la mostra individualmente, quando o cliente clica no botão aba de modulos-->
 <div class="container">
-    {% for modulo in modulos %}
+    {% for modulo in modulos %}   <!--destrinchando variavel modulos, que guarda todos os modulos com saus respectivas aulas. O primeiro for separa os modulos e o segundo as aulas-->
     <div class="row">
         <div class="col-md-12">
             <h1 class="mt-4 mb-3">{{ modulo.titulo }}</h1>
@@ -17,8 +17,8 @@
             </dl>
             <h2>Aulas</h2>
             <ol>
-                {% for aula in modulo.aulas %}
-                <li><a href="{{ aula.get_absolute_url }}">{{ aula.titulo }}</a></li>    <!--essa parte do href=" {{ aula.get_absolute_url }} "é referente aos links dos videos, que clicando direciona para o video-->
+                {% for aula in modulo.aulas %}   <!--separando as aulas de cada modulo-->
+                <li><a href="{{ aula.get_absolute_url }}">{{ aula.titulo }}</a></li>    <!--essa parte do href=" {{ aula.get_absolute_url }} "é referente aos links dos videos, que clicando direciona para o video. {{ aula.titulo }}é o titulo dos links-->
                 {% endfor %}
             </ol>
         </div>

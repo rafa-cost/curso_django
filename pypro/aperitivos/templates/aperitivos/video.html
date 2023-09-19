@@ -1,12 +1,12 @@
 {% extends 'base/base.html' %} <!--parte dos arquivos estaticos e navebar-->
 {% load static %}
-{% block title %}Python Pro - Aperitivo{% endblock title %} <!--titulo que aparece do lado do favicon-->
-{% block description %}Página com video gratuito de Python{% endblock description %} <!--descrição da pagina , aparece quando vc inspeciona o html da pagina-->
-{% block body %}
+{% block title %}Python Pro - Aperitivo{% endblock title %} <!--titulo que aparece do lado do favicon, esse "block title" fica dentro de base.html e alteramos ele aqui-->
+{% block description %}Página com video gratuito de Python{% endblock description %} //o que vem acima do "block body" é o cabeçalho, o que vem abaixo do "endblock body" é o rodapé, e no meio dos dois, é o conteudo da pagina
+{% block body %}<!--o que vem acima do "block body" é o cabeçalho, o que vem abaixo do "endblock body" é o rodapé, e no meio dos dois, é o conteudo da pagina-->
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
+             <!--este código abaixo é referente ao css mt=margem topo, mb=margem baixo-->
             <h1 class="mt-4 mb-3">{{ video.titulo | default:"Faltando Título" }}</h1> <!--se por acaso esquecer de colocar o titulo , acima do video, irá aparecer a msg "Faltando Título"-->
             <iframe src="https://player.vimeo.com/video/{{ video.vimeo_id }}"
                     width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"

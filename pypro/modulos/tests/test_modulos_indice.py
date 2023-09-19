@@ -11,33 +11,33 @@ from pypro.modulos.models import Modulo, Aula
 
 
 @pytest.fixture
-def modulos(db):
-    return mommy.make(Modulo, 2) #estamos craindo 2 módulos aqui
+def modulos(db):                  #acessando o banco
+    return mommy.make(Modulo, 2) #class Modulo passada como parametro
 
 @pytest.fixture
 def aulas(modulos):
-    aulas=[]
-    for modulo in modulos:   # esse código ira mostrar na pagina todos os modulos presentes no banco
+    aulas=[]                 #aqui esta indicando que serão varias aulas por módulo
+    for modulo in modulos:   # esse teste é para ver se aparece na pagina todos os modulos que existem no banco de dados
         aulas.extend(mommy.make(Aula, 3, modulo=modulo))  #estamos criando aqui 3 aulas para cada modulo
-    return aulas
+    return aulas                 #retornando todas as aulas criadas em módulos na fixture acima def "modulos(db): "
 
 @pytest.fixture
-def resp(client, modulos, aulas):  #aqui declaramos as 2 fixtures criadas acima
-    resp = client.get(reverse('modulos:indice'))  #quando chamar "modulos" na pagina de endereço, ira buscar "indice.html"
+def resp(client, modulos, aulas):  #aqui passamos como parametro as 2 fixtures criadas acima
+    resp = client.get(reverse('modulos:indice'))  #estamos testando essas 2 (modulos, aulas) variaveis dentro de indice views, aqui não passamos o slug como parametro pois estamos pegando todos os modulos então não precisa identificar
     return resp
 
 def test_indice_disponivel(resp):
     assert resp.status_code == 200  #código de sucesso http
 
-def test_titulo(resp, modulos: List[Modulo]):
+def test_titulo(resp, modulos: List[Modulo]):        #teste dos titulos de modulos
     for modulo in modulos:
         assert_contains(resp, modulo.titulo)
 
-def test_descricao(resp, modulos: List[Modulo]):
+def test_descricao(resp, modulos: List[Modulo]):     #teste das descrições de modulos
     for modulo in modulos:
         assert_contains(resp, modulo.descricao)
 
-def test_publico(resp, modulos: List[Modulo]):
+def test_publico(resp, modulos: List[Modulo]):      #teste de publico de modulos
     for modulo in modulos:
         assert_contains(resp, modulo.publico)
 

@@ -3,7 +3,7 @@
 {% block title %}Python Pro - Login{% endblock title %}
 {% block body %}
 <!--esse é o template de login, para o usuario acessar os videos das aulas-->
-<br>
+<br><!--esse código html pegamos pronto no site https://docs.djangoproject.com/en/3.0/topics/auth/default/#django.contrib.auth.views.LoginViewna aula formularios de login simples-->
 <br>
 <br>
 <br>
@@ -13,12 +13,12 @@
         <div class="col">
 
             {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
+            <p>Your username and password didn't match. Please try again.</p>   <!--erro de senha ou usuario inexintentes-->
             {% endif %}
 
             {% if next %}
             {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed,
+            <p>Your account doesn't have access to this page. To proceed,       <!--parte de erros também-->
                 please login with an account that has access.</p>
             {% else %}
             <p>Please login to see this page.</p>
@@ -29,12 +29,12 @@
                 {% csrf_token %}
                 <table>
                     <tr>
-                        <td>{{ form.username.label_tag }}</td>
-                        <td>{{ form.username }}</td>
+                        <td>{{ form.username.label_tag }}</td>   <!--essa código que da o texto ao lado do campo-->
+                        <td>{{ form.username }}</td>             <!--esse código é referente ao campo que vamos digitar o que é pedido-->
                     </tr>
                     <tr>
-                        <td>{{ form.password.label_tag }}</td>
-                        <td>{{ form.password }}</td>
+                        <td>{{ form.password.label_tag }}</td>   <!--essa código que da o texto ao lado do campo-->
+                        <td>{{ form.password }}</td>            <!--esse código é referente ao campo que vamos digitar o que é pedido-->
                     </tr>
                 </table>
 
@@ -43,7 +43,7 @@
             </form>
 
 
-            <p><a href="{% url 'password_reset' %}">Esqueceu sua senha?</a></p>
+            <p><a href="{% url 'password_reset' %}">Esqueceu sua senha?</a></p>   <!--se esqueceu a senha é direcionada para a url reset-->
         </div>
 
     </div>

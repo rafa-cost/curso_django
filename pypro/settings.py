@@ -29,15 +29,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = config('DEBUG', cast=bool)    #esse debug esta pegando a variavel do .env (debug=true) , fizemos essa configuração utilizando a dependencia python_decouple
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-AUTH_USER_MODEL = 'base.User'
+AUTH_USER_MODEL = 'base.User'     #Modelo de usuario autorizado, app base.user. Essa app é onde criamos o super usuario (que bem dizer é quem faz as configurações no django admin), que também cadastra os outros usuarios com nome e email(os alunos).
 
-LOGIN_URL = '/contas/login/'      #esse código, ele ira pedir a senha assim que um usuario não logado tentar ver algum video, assim que ele clicar no video sera direcionado para o login, e assim que fizer o login ele é direcionado para o video
-LOGIN_REDIRECT_URL = '/modulos/'   #depois que o usuario fizer o login de nome e senha, sera direcionado para o url 'modulos'
-LOGOUT_REDIRECT_URL = '/'      #por conta deste código assim que o usuario, apertar o botão sair, ele sera redirecionado para pagina principal do site '/'
+LOGIN_URL = '/contas/login/'      #aqui no caso é quando o usuario, não esta logado, e vai direto no botão modulos, escolhe o modulo, depois escolhe a aula, ai é direcionado para o login. Assim que fizer o login é direciona para o video da aula que tinha escolhido.
+LOGIN_REDIRECT_URL = '/modulos/'   #quando o usuario apertar o botão entrar ele sera direcionado para o login, onde colocara nome e senha, sera direcionado para o url 'modulos' ou seja a pagina modulos/indice.html, onde mostra todos os modulos e aulas.
+LOGOUT_REDIRECT_URL = '/'      #por conta deste código assim que o usuario, apertar o botão sair, ele sera redirecionado para a pagina principal do site '/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'collectfast',
+    'collectfast',            #é para subir apenas os arquivos estaticos alterados, para nos servidor esterno(heroku) no deploy
     'django.contrib.staticfiles',
     'ordered_model',
     'django_extensions',
@@ -67,7 +67,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pypro.urls'
+ROOT_URLCONF = 'pypro.urls'   #pasta principal do projeto
 
 TEMPLATES = [
     {
@@ -80,7 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'pypro.modulos.context_processors.listar_modulos',
+                'pypro.modulos.context_processors.listar_modulos',   #esse código tem a ver com o botão módulos que esta no navbar, colocamos esse código aqui, juntamente com o modulo context_processors, para que o botão módulos apareça em todas as paginas
             ],
         },
     },
@@ -109,9 +109,9 @@ if DEBUG:
     MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-#configurações banco de dados
+#configurações banco de dados, esse aqui é o nosso banco de dados local o db.sqlite3
 default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-
+#pelo que eu entendi essa parte de baixo é a configuração do banco de dados do heroku(postgress)
 parse_database = partial(dj_database_url.parse, conn_max_age=600)
 
 DATABASES = {
@@ -146,19 +146,19 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 
 USE_TZ = True
-
+# Arquivos estaticos (CSS, JavaScript, Images)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# configuração de ambiente de desenvolvimento
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-MEDIA_URL = '/media/'
+# configuração de ambiente de desenvolvimento         #essas configurações abaixos são para nosso hambiente local de desenvolvimente
+STATIC_URL = 'static/'                                #endereço base dos meus arquivos estaticos, aparentemente ela vem no settings por padrão
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   #"STATIC_ROOT" é um diretorio onde eu vou querer colocar esses arquivos. "os.path.join" estamos fazendo um join na base do meu arquivo ."BASE_DIR" é variavel que calcula a raiz do nosso projeto. Nós vamos colocar esses arquivos em um diretorio chamado 'staticfiles' (ou seja uma pasta dentro do diretorio raiz do nosso projeto "BASE_DIR" chamada "staticfiles").
+                                                      #quando colocamos esses comandos STATIC_ROOT, temos que fazer o "python manage.py collectstatic"(que é a coleta dos arquivos estaticos)
+MEDIA_URL = '/media/'                                 #essas 2 linhas abaixos, são referentes ao upload de arquivos. Caso o site desponibilize o upload de arquivos.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 # configurações da aws amazon
-
+#vamos passar os arquivos estaticos para o AWS para poder trabalhar com esses arquivos estaticos esternamente, no caso no heroku
 COLLECTFAST_ENABLED = False
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default=None)
@@ -176,12 +176,14 @@ if AWS_ACCESS_KEY_ID:
     COLLECTFAST_ENABLED = True
     COLLECTFAST_STRATEGY = 'collectfast.strategies.boto3.Boto3Strategy'
 
+    #static assets     #passamos nossos arquivos estaticos para o amazon s3, se acessarmos ele, conseguimos ver
     STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
     STATIC_S3_PATH = 'static'
     STATIC_ROOT = f'/{STATIC_S3_PATH}/'
     STATIC_URL = f'//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/'
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
+    #upload media folder
     DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
     DEFAULT_S3_PATH = 'media'
     MEDIA_ROOT = f'/{DEFAULT_S3_PATH}/'
