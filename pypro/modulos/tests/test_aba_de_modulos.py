@@ -9,11 +9,11 @@ from pypro.modulos.models import Modulo
 
 
 @pytest.fixture
-def modulos(db):
+def modulos(db):                        #usando o banco de dados
     return mommy.make(Modulo, 2) #esse 2 quer dizer que ele tera 2 modulos
 @pytest.fixture
-def resp(client, modulos): #modulos é o nome do aplicativo
-    resp = client.get(reverse('base:home')) #aqui a função resp esta chamando o home.html
+def resp(client, modulos):
+    resp = client.get(reverse('base:home')) #aqui no meu entender é pra ver se o botão módulos esta aparecendo na view base:home (base/home.html)
     return resp
 
 
@@ -22,7 +22,7 @@ def test_titulo_dos_modulos(resp, modulos):  #aqui eu entendo que esta testando 
         assert_contains(resp, modulo.titulo)
 
 
-def test_link_dos_modulos(resp, modulos):   #aqui eu entendo que ao clicar em algum titulo de módulo, sera direcionado para as aulas
+def test_link_dos_modulos(resp, modulos):   #aqui eu entendo que ao clicar em algum titulo de módulo, sera direcionado para a pagina do modulo
     for modulo in modulos:
         assert_contains(resp, modulo.get_absolute_url())
 

@@ -13,6 +13,6 @@ class ModuloAdmin(OrderedModelAdmin):         # o OrderedModel serve para organi
 @admin.register(Aula)
 class AulaAdmin(OrderedModelAdmin):
     list_display = ('titulo', 'modulo', 'order', 'move_up_down_links')
-    list_filter = ('modulo',)  #aqui estamos listando as aulas ao determinado módulo que ela pertence
-    ordering = ('modulo', 'order') #vamos ordenar nossas aulas , primeiramente pela critério módulos e depois pelo parametro order. Conseguimos fazer isso, através das setinhas
+    list_filter = ('modulo',)  #aqui esttamos fazendo um filtro para ver o modulo com a suas respectivas aulas
+    ordering = ('modulo', 'order') #vamos ordenar pelos modulos e dentro dos modulos pelo order
     prepopulated_fields = {'slug': ('titulo',)}

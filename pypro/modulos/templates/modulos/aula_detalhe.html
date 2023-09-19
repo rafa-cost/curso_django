@@ -1,13 +1,13 @@
-{% extends 'base/base.html' %} <!--parte dos arquivos estaticos e navebar-->
+{% extends 'base/base.html' %} //parte dos arquivos estaticos e navebar
 {% load static %}
-{% block title %}Python Pro - Aperitivo{% endblock title %} <!--titulo que aparece do lado do favicon-->
-{% block description %}Página com video gratuito de Python{% endblock description %} <!--descrição da pagina , aparece quando vc inspeciona o html da pagina-->
+{% block title %}Python Pro - Aperitivo{% endblock title %} //titulo que aparece do lado do favicon
+{% block description %}Página com video gratuito de Python{% endblock description %} //descrição da pagina , aparece quando vc inspeciona o html da pagina
 {% block body %}
 <!--esse código abaixo é responsavel pelo breadcrumb, ou seja praticamente ele indica o modulo e a aula que vc esta assistindo, no canto superior esquerdo-->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{aula.modulo.get_absolute_url}}">{{aula.modulo.titulo}}</a></li>
+    <li class="breadcrumb-item"><a href="{{aula.modulo.get_absolute_url}}">{{aula.modulo.titulo}}</a></li> <!--esse é o  breadcrumb, ele é referente as 3 barras que aparecem em cima do titulo (ex: home/modulo da aula/titulo da aula)-->
     <li class="breadcrumb-item active" aria-current="page">{{aula.titulo}}</li>
   </ol>
 </nav>
@@ -26,4 +26,4 @@
 </div>
 <br>
 <br>
-{% endblock body %} <!--o "body" é a parte do rodapé da pagina-->
+{% endblock body %} //o "body" é a parte do rodapé da pagina

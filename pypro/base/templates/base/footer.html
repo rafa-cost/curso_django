@@ -1,7 +1,7 @@
 
 
-<footer class="main-footer at-5 pt-4 text-light">
-
+<footer class="main-footer mt-5 pt-4 text-light">  <!--configurações css, pt-4(é o padding, margem interna do box, mt=margem topo)-->
+<!--esse código é o rodapé de todas paginas-->
     <div class="container">
         <div class="row">
             <div class="col">
@@ -9,7 +9,7 @@
                 <address>
                     +55 12 997-411-854
                     <br/>
-                    <a href="mailton:{{contato_email}}" class="text-light">{{contato_email}}</a>
+                    <a href="mailto:{{contato_email}}" class="text-light">{{contato_email}}</a>   <!--{{contato_email}}aqui é o texto, mailton:{{contato_email}}aqui faz virar link-->
                 </address>
             </div>
         </div>
@@ -17,7 +17,7 @@
     <div class="rights pb-4">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col"> <!--{% now 'Y' %} essa parte do texto abaixo ele marca o ano, sempre ira mostrar o ano atualizado-->
                     {% now 'Y' %} Python Pro. Todos direitos reservados.
                 </div>
             </div>
